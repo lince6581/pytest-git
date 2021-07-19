@@ -9,3 +9,4 @@ pytest.main(["--html="+ report_file_path])
 
 
 #test git版本管理
+#远程仓库下载git
