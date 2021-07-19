@@ -6,3 +6,6 @@ pytest.main(["--html="+ report_file_path])
 
 #执行单个
 # pytest.main(["--html="+ report_file_path])
+
+
+#test git版本管理
