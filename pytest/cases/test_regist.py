@@ -1,28 +1,36 @@
 import json
 import pytest
+from jsonpath import jsonpath
 
-from common.handle_excel import HandleExcel
-from common.handle_log import logger
-from common.handle_re import not_existed_tel
-from common.handle_request import request
+from middleware.handle_middle import My_Handle
 
 
-data = HandleExcel("cases.xlsx", "register").get_all_case()
+data = My_Handle.read_excel("cases.xlsx", "register").get_all_case()
 
 @pytest.mark.parametrize("case_data", data)
+@pytest.mark.run(order = 1)
 def test_register(case_data):
-    json_data = not_existed_tel(case_data["data"])
+    url = "".join([My_Handle.config["http_request"]["url"], case_data["url"]])
+    method = case_data["method"]
+    headers = eval(case_data["headers"])
+    # if 'not_existed_tel' in case_data["data"]:
+    #     My_Handle.Creat_new_phone()
+    #     data = My_Handle.replace_data(case_data["data"])
+    # else:
+    #     data = My_Handle.replace_data(case_data["data"])
+    data = json.loads(My_Handle.replace_data(case_data))
+    rqs = My_Handle.Request.request(url=url, method=method, headers=headers, json=data)
 
-    rqs = request(case_data, json_data)
-
-    #断言
-    except_data = json.loads(case_data["expected"])["code"]
-    real_data = json.loads(rqs.text)["code"]
+    # 断言
+    excepted = json.loads(case_data["expected"])
     try:
-        assert except_data == real_data
-        logger.info("测试执行成功")
+        for key in excepted.keys():
+            excepted_data = excepted[key]
+            real_data = jsonpath(json.loads(rqs.text), key)[0]
+            assert excepted_data == real_data
+            My_Handle.logger.info("测试执行成功")
     except:
-        logger.error("测试执行失败")
+        My_Handle.logger.error("测试执行失败")
         raise
 
 
@@ -30,4 +38,4 @@ def test_register(case_data):
 
 
 if __name__ == '__main__':
-    tes = test_register()
+    pytest.main(["--html=./report.html","test_regist.py"])

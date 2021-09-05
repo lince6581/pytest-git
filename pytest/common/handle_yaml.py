@@ -1,5 +1,4 @@
 import yaml
-from middleware.handle_middle import My_Handle
 
 def get_yaml(file_path):
     with open(file_path, mode="r", encoding='utf-8') as f:
@@ -12,4 +11,4 @@ def write_yaml(file_path, data, mode="a"):
 
 
 if __name__ == '__main__':
-    print(My_Handle.user_config["投资人"]["mobile_phone"])
+    print(get_yaml())

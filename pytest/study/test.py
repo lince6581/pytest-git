@@ -4,7 +4,7 @@
 
 # from common.handle_creat_new_phone import Creat_new_phone
 # from common.handle_yaml import config_data
-from config.handle_filepath import yaml_file_path
+# from config.handle_filepath import yaml_file_path
 # import yaml
 # import json
 # with open(yaml_file_path, encoding="utf-8") as f:
@@ -36,9 +36,9 @@ from config.handle_filepath import yaml_file_path
 #
 # print(c)
 
-from config.handle_filepath import user_config_file_path
-from common.handle_yaml import get_yaml
-import yaml
+# from config.handle_filepath import user_config_file_path
+# from common.handle_yaml import get_yaml
+# import yaml
 
 # user = {"register":{"mobile_phone": "13131313", "pwd": "a傻傻的aaaaa大大说"}}
 # with open(user_config_file_path, mode="w") as f:
@@ -47,3 +47,33 @@ import yaml
 
 # data = get_yaml(user_config_file_path)
 # print(data)
+
+
+class A:
+    a =1
+    b =2
+    def add(self):
+        c = self.a + self.b
+        return c
+
+    @classmethod
+    def add1(cls):
+        c = cls.a + cls.b
+        return c
+
+    @staticmethod
+    def add2():
+        a = 2
+        b = 2
+        c = a + b
+        return c
+
+    @classmethod
+    def add3(cls):
+        return cls.add2()
+
+    s = add2()
+    print(s)
+
+
+a = A()

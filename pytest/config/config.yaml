@@ -13,3 +13,11 @@ logger:
   stream_handler_level: 'DEBUG'
   file: log.log
   file_handler_level: 'INFO'
+
+db_mysql:
+  host: "8.129.91.152"
+  user: "future"
+  password: "123456"
+  port: 3306
+  charset: "utf8"
+  database: "futureloan"

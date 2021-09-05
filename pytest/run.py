@@ -5,8 +5,6 @@ from config.handle_filepath import report_file_path
 pytest.main(["--html="+ report_file_path])
 
 #执行单个
-# pytest.main(["--html="+ report_file_path])
+# pytest.main(["--html="+ report_file_path])嗷嗷
 
 
-#test git版本管理
-#远程仓库下载git
